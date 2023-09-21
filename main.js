@@ -22,7 +22,15 @@ function createImg(target, num) {
     img.setAttributeNode(src);
     target.append(img);
   }
-  return target.querySelectorAll("img");
+  const imgs_ = target.querySelectorAll("img");
+  let count = 0;
+  imgs_.forEach((img) => {
+    img.onload = () => {
+      count++;
+      if (count === num) console.log("모든 이미지 로딩 완료");
+    };
+  });
+  return imgs_;
 }
 
 function activation(arr, index) {
